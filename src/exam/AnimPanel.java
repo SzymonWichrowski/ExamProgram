@@ -50,6 +50,14 @@ public class AnimPanel extends JPanel implements ActionListener {
         }
     }
 
+    public void changeSpeed() {
+        if(delay == 70){
+            delay = 10;
+        }
+        else delay = 70;
+        Figure.getDelay().set(delay);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

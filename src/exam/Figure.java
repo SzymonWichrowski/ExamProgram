@@ -26,7 +26,7 @@ public class Figure implements Runnable, ActionListener, MouseMotionListener {
     private double sf;
     // kat obrotu
     private double an;
-    private AtomicInteger delay = new AtomicInteger();	//klasa dzięki której int może być automatycznie updatowany
+    private static AtomicInteger delay = new AtomicInteger();	//klasa dzięki której int może być automatycznie updatowany
     private int width;
     private int height;
     private Color clr;
@@ -121,7 +121,7 @@ public class Figure implements Runnable, ActionListener, MouseMotionListener {
     public static void setPaused(boolean paused) {
         Figure.paused = paused;
     }
-    public AtomicInteger getDelay() {
+    public static AtomicInteger getDelay() {
         return delay;
     }
 

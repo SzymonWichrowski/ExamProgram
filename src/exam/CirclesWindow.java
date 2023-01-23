@@ -5,12 +5,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CirclesWindow extends JFrame {
 
     private JTextField circleX_tField, circleY_tField;
     private JLabel coordinates_label, x_label, y_label;
-    private JButton btnAdd, btnAnimate, btnColor;
+    private JButton btnAdd, btnAnimate, btnColor, btnSpeed;
 
     private Font buttonFont = new Font("Dialog", Font.ITALIC, 14);
     private Color colorOfBtn = new Color(182, 127, 71);
@@ -98,6 +99,15 @@ public class CirclesWindow extends JFrame {
         add(btnColor);
         btnColor.addActionListener(e -> {
             Figure.setClrToRemember(JColorChooser.showDialog(null, "Choose color!", Color.BLACK));
+        });
+
+        btnSpeed = new JButton("Faster/Slower");
+        btnSpeed.setBounds(900, 600, 200, 100);
+        btnSpeed.setBackground(colorOfBtn);
+        btnSpeed.setFont(buttonFont);
+        add(btnSpeed);
+        btnSpeed.addActionListener(e -> {
+            canva.changeSpeed();
         });
     }
 }
