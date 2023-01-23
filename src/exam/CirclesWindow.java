@@ -10,7 +10,7 @@ public class CirclesWindow extends JFrame {
 
     private JTextField circleX_tField, circleY_tField;
     private JLabel coordinates_label, x_label, y_label;
-    private JButton btnAdd, btnAnimate;
+    private JButton btnAdd, btnAnimate, btnColor;
 
     private Font buttonFont = new Font("Dialog", Font.ITALIC, 14);
     private Color colorOfBtn = new Color(182, 127, 71);
@@ -27,7 +27,7 @@ public class CirclesWindow extends JFrame {
         SwingUtilities.invokeLater(() -> canva.initialize());
 
         btnAdd = new JButton("Add");	//dodanie przycisku add
-        btnAdd.setBounds(450, 600, 80, 23);
+        btnAdd.setBounds(550, 600, 100, 100);
         btnAdd.setBackground(colorOfBtn);
         btnAdd.setFont(buttonFont);
         btnAdd.setEnabled(false);	//blokada przycisku add
@@ -37,7 +37,7 @@ public class CirclesWindow extends JFrame {
         });
 
         btnAnimate = new JButton("Animate/Stop");	//dodanie przycisku animacji
-        btnAnimate.setBounds(250, 600, 150, 23);
+        btnAnimate.setBounds(350, 600, 150, 100);
         btnAnimate.setBackground(colorOfBtn);
         btnAnimate.setFont(buttonFont);
         add(btnAnimate);
@@ -90,6 +90,14 @@ public class CirclesWindow extends JFrame {
                 circleY_tField.setBackground(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
             }
         });
-    }
 
+        btnColor = new JButton("Color");
+        btnColor.setBackground(colorOfBtn);
+        btnColor.setFont(buttonFont);
+        btnColor.setBounds(750, 600, 100, 100);
+        add(btnColor);
+        btnColor.addActionListener(e -> {
+            Figure.setClrToRemember(JColorChooser.showDialog(null, "Choose color!", Color.BLACK));
+        });
+    }
 }

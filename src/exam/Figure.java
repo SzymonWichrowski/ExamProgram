@@ -3,12 +3,14 @@ package exam;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Figure implements Runnable, ActionListener {
+public class Figure implements Runnable, ActionListener, MouseMotionListener {
 
     // wspolny bufor
     protected Graphics2D buffer;
@@ -27,9 +29,9 @@ public class Figure implements Runnable, ActionListener {
     private AtomicInteger delay = new AtomicInteger();	//klasa dzięki której int może być automatycznie updatowany
     private int width;
     private int height;
-    private Color clr, clrToRemember;
+    private Color clr;
+    private static Color clrToRemember;
     private static boolean paused = false;	//pauza(nieaktywna)
-    private boolean freeze;
     protected static final Random rand = new Random();
     private static double coordinateX = 200, coordinateY = 200;
 
@@ -43,8 +45,13 @@ public class Figure implements Runnable, ActionListener {
         dy = 1 + rand.nextInt(5);
         sf = 1 + 0.05 * rand.nextDouble();
         an = 0.1 * rand.nextDouble();
-        clr = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
-        //freeze = false;
+
+        if(clrToRemember == null ) {
+            clr = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
+        }
+        else {
+            clr = clrToRemember;
+        }
     }
 
     @Override
@@ -118,8 +125,8 @@ public class Figure implements Runnable, ActionListener {
         return delay;
     }
 
-    public void setClrToRemember(Color clr) {
-        this.clrToRemember = clr;
+    public static void setClrToRemember(Color clr) {
+        Figure.clrToRemember = clr;
     }
 
     public void setAn(double an) {
@@ -152,5 +159,15 @@ public class Figure implements Runnable, ActionListener {
 
     public static void setCoordinateY(double y) {
         Figure.coordinateY = y;
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 }
