@@ -2,15 +2,14 @@ package exam;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
-public class CirclesWindow extends JFrame implements KeyListener {
+public class CirclesWindow extends JFrame {
 
     private JTextField circleX_tField, circleY_tField;
-    private JLabel coordinates_label;
+    private JLabel coordinates_label, x_label, y_label;
     private JButton btnAdd, btnAnimate;
 
     private Font buttonFont = new Font("Dialog", Font.ITALIC, 14);
@@ -51,36 +50,46 @@ public class CirclesWindow extends JFrame implements KeyListener {
         coordinates_label = new JLabel("Coordinates");
         coordinates_label.setFont(buttonFont);
         coordinates_label.setForeground(colorOfBtn);
-        coordinates_label.setBounds(90, 600, 100, 30);
+        coordinates_label.setBounds(85, 600, 150, 30);
         add(coordinates_label);
+
+        x_label = new JLabel("x");
+        x_label.setFont(buttonFont);
+        x_label.setForeground(colorOfBtn);
+        x_label.setBounds(70, 620, 50, 25);
+        add(x_label);
+
+        y_label = new JLabel("y");
+        y_label.setFont(buttonFont);
+        y_label.setForeground(colorOfBtn);
+        y_label.setBounds(170, 620, 50 , 25);
+        add(y_label);
 
         circleX_tField = new JTextField();
         circleX_tField.setBounds(50, 650, 50, 25);
         circleX_tField.setFont(buttonFont);
         circleX_tField.setBackground(new Color(176, 136, 95));
         add(circleX_tField);
-
+        circleX_tField.addActionListener(e -> {
+            if(!circleX_tField.getText().isEmpty()) {
+                Figure.setCoordinateX(Double.parseDouble(circleX_tField.getText()));
+                Random random = new Random();
+                circleX_tField.setBackground(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+            }
+        });
 
         circleY_tField = new JTextField();
         circleY_tField.setBounds(150, 650, 50, 25);
         circleY_tField.setFont(buttonFont);
         circleY_tField.setBackground(new Color(176, 136, 95));
         add(circleY_tField);
-
+        circleY_tField.addActionListener(e -> {
+            if(!circleY_tField.getText().isEmpty()) {
+                Figure.setCoordinateY(Double.parseDouble(circleY_tField.getText()));
+                Random random = new Random();
+                circleY_tField.setBackground(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+            }
+        });
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

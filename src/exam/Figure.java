@@ -73,7 +73,6 @@ public class Figure implements Runnable, ActionListener {
         int cy = bounds.y + bounds.height / 2;
 
         if(!paused) {	//poruszanie tylko wtedy kiedy pauza jest nieaktywna (paused == false)
-            if (!freeze){	//każda figura ma przypisane pole freeze
 
                 // odbicie
                 if (cx + bounds.width/2 <= bounds.width) dx = Math.abs(dx);
@@ -96,7 +95,7 @@ public class Figure implements Runnable, ActionListener {
                 aft.translate(dx, dy);
                 // przeksztalcenie obiektu
                 area.transform(aft);
-            }
+
         }
         return area;
     }
@@ -115,29 +114,8 @@ public class Figure implements Runnable, ActionListener {
     public static void setPaused(boolean paused) {
         Figure.paused = paused;
     }
-
-    public void setFreeze(boolean freeze) {
-        this.freeze = freeze;
-    }
-
-    public boolean getFreeze() {
-        return this.freeze;
-    }
-
     public AtomicInteger getDelay() {
         return delay;
-    }
-
-    public Color getClr() {
-        return clr;
-    }
-
-    public void setClr(Color clr) {
-        this.clr = clr;
-    }
-
-    public Color getClrToRemember() {
-        return clrToRemember;
     }
 
     public void setClrToRemember(Color clr) {
